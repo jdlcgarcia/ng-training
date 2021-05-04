@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {Employee} from '../model/employee.model';
 @Component({
   selector: 'app-e-info',
   templateUrl: './e-info.component.html',
@@ -8,17 +9,10 @@ import { DataService } from '../data.service';
   providers: [DataService]
 })
 export class EInfoComponent implements OnInit {
-  infoReceived1: string[] = [];
-  infoReceived2: string[] = [];
-  infoReceived3: string[] = [];
-  getInfoFromService1(){
-    this.infoReceived1 = this.dservice.getInfo1();
-  }
-  getInfoFromService2(){
-    this.infoReceived2 = this.dservice.getInfo2();
-  }
-  getInfoFromService3(){
-    this.infoReceived3 = this.dservice.getInfo3();
+  infoReceived: Employee[] = [];
+
+  getInfoFromService(): void {
+    this.infoReceived = this.dservice.getInfo();
   }
 
   constructor(private dservice: DataService) { }
@@ -26,8 +20,8 @@ export class EInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateInfo(frm: any) {
-    this.dservice.addInfo(frm.value.location);
+  updateInfo(frm: any): void {
+    this.dservice.addLocation(frm.value.location);
   }
 
 }

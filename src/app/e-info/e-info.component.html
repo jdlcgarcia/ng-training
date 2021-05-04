@@ -1,21 +1,30 @@
-<form #frm="ngForm" (ngSubmit)="updateInfo(frm)">
-  <div class="">
-    <input type="text" name="location" value="" ngModel>
-    <button type="submit" name="button">Add Info</button>
+
+  <div class="row justify-content-between">
+    <div class="col">
+      <button type="button" class="btn btn-primary mb-2" name="button" (click)="getInfoFromService()">Employee List</button>
+    </div>
+    <div class="col">
+      <form class="form-inline  float-right" #frm="ngForm" (ngSubmit)="updateInfo(frm)">
+        <label class="sr-only" for="location">Location</label>
+        <div class="input-group mb-2 mr-sm-2">
+          <input type="text" class="form-control" id="location" name="location" placeholder="U.S.A." ngModel>
+        </div>
+
+        <button type="submit" class="btn btn-warning mb-2" name="button">Add Location</button>
+      </form>
+    </div>
   </div>
-</form>
 
-<button type="button" name="button" (click)="getInfoFromService1()">Employee 1</button>
-<ul class="list-group">
-  <li *ngFor="let info of infoReceived1" class="list-group-info">{{ info }}</li>
-</ul>
 
-<button type="button" name="button" (click)="getInfoFromService2()">Employee 2</button>
-<ul class="list-group">
-  <li *ngFor="let info of infoReceived2" class="list-group-info">{{ info }}</li>
-</ul>
+<div class="card-deck">
+  <div *ngFor="let info of infoReceived" class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ info.id }}</h5>
+      <p class="card-text">{{ info.name }}</p>
+      <p class="card-text"><small class="text-muted">{{ info.email }}</small></p>
+      <p class="card-text"><small class="text-muted float-right">{{ info.location }}</small></p>
+    </div>
+  </div>
+</div>
 
-<button type="button" name="button" (click)="getInfoFromService3()">Employee 3</button>
-<ul class="list-group">
-  <li *ngFor="let info of infoReceived3" class="list-group-info">{{ info }}</li>
-</ul>
+
