@@ -7,10 +7,18 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
+      {
+        path: '',
+        // If this path is the 'full' match...
+        pathMatch: 'full',
+        // ...redirect to this route.
+        redirectTo: 'home',
+      },
       { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
       { path: 'about', loadChildren: () => import('./pages/about/about.module').then(m => m.AboutModule) },
     ],
   },
+  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
 
 ];
 
